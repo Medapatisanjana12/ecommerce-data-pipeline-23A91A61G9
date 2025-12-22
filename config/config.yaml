@@ -1,0 +1,51 @@
+# =============================
+# Database Configuration
+# =============================
+database:
+  host: ${DB_HOST:localhost}
+  port: ${DB_PORT:5432}
+  name: ${DB_NAME:ecommerce_db}
+  user: ${DB_USER:admin}
+  password: ${DB_PASSWORD:password}
+
+schemas:
+  staging: staging
+  production: production
+  warehouse: warehouse
+
+# =============================
+# Data Generation Parameters
+# =============================
+data_generation:
+  customers_count: 1000
+  products_count: 500
+  orders_count: 5000
+
+  date_range:
+    start_date: "2023-01-01"
+    end_date: "2024-12-31"
+
+  distribution:
+    order_amount:
+      min: 100
+      max: 5000
+
+# =============================
+# Pipeline Configuration
+# =============================
+pipeline:
+  batch_size: 1000
+  retry_attempts: 3
+  timeout_seconds: 30
+
+logging:
+  level: INFO
+  log_file: logs/pipeline.log
+
+# =============================
+# BI Tool Configuration
+# =============================
+bi_tool:
+  tool: tableau     # tableau or powerbi
+  host: localhost
+  port: 5432
