@@ -1,0 +1,101 @@
+{
+  "project_name": "E-Commerce Analytics Platform",
+  "dashboard_tool": "Power BI",
+  "data_source": "Processed analytics CSV files",
+  "dashboard_pages": [
+    {
+      "page_name": "Page 1",
+      "description": "High-level KPIs and overall business performance",
+      "visuals": [
+        {
+          "visual_type": "KPI Cards",
+          "metrics": [
+            "Total Revenue",
+            "Total Transactions",
+            "Average Order Value"
+          ],
+          "data_source": "query2_monthly_trend.csv",
+          "business_question": "How is the business performing overall?"
+        },
+        {
+          "visual_type": "Line Chart",
+          "metrics": ["Total Revenue"],
+          "dimension": "Month",
+          "data_source": "query2_monthly_trend.csv",
+          "business_question": "How does revenue trend over time?"
+        }
+      ]
+    },
+    {
+      "page_name": "Page 2",
+      "description": "Customer behavior and value analysis",
+      "visuals": [
+        {
+          "visual_type": "Matrix",
+          "metrics": [
+            "Total Revenue",
+            "Transaction Count",
+            "Average Order Value"
+          ],
+          "dimension": "Customer",
+          "data_source": "query7_customer_lifetime_value.csv",
+          "business_question": "Who are the top 10 customers by value?"
+        },
+        {
+          "visual_type": "Area Chart",
+          "metrics": ["Customer Count"],
+          "dimension": "Month",
+          "data_source": "query3_customer_segments.csv",
+          "business_question": "How many new customers are acquired over time?"
+        }
+      ]
+    },
+    {
+      "page_name": "Page 3",
+      "description": "Regional revenue distribution and performance",
+      "visuals": [
+        {
+          "visual_type": "Filled Map",
+          "metrics": ["Total Revenue"],
+          "dimension": "State",
+          "data_source": "query6_geographic_analysis.csv",
+          "business_question": "Which states generate the highest revenue?"
+        },
+        {
+          "visual_type": "Clustered Bar Chart",
+          "metrics": ["Total Revenue"],
+          "dimension": "State",
+          "filter": "Top 10 states by revenue",
+          "data_source": "query6_geographic_analysis.csv",
+          "business_question": "Which are the top 10 revenue-generating states?"
+        }
+      ]
+    },
+    {
+      "page_name": "Page 4",
+      "description": "Product performance and sales behavior",
+      "visuals": [
+        {
+          "visual_type": "Matrix",
+          "metrics": [
+            "Revenue",
+            "Units Sold",
+            "Profit",
+            "Profit Margin"
+          ],
+          "dimension": "Product",
+          "data_source": "query8_product_profitability.csv",
+          "business_question": "Which products are most profitable?"
+        },
+        {
+          "visual_type": "Ribbon Chart",
+          "metrics": ["Total Revenue"],
+          "dimension": "Month",
+          "legend": "Customer Segment",
+          "data_source": "query3_customer_segments.csv",
+          "business_question": "How do customer purchase patterns change over time?"
+        }
+      ]
+    }
+  ]
+}

@@ -2,11 +2,11 @@
 # Database Configuration
 # =============================
 database:
-  host: ${DB_HOST:localhost}
-  port: ${DB_PORT:5432}
-  name: ${DB_NAME:ecommerce_db}
-  user: ${DB_USER:admin}
-  password: ${DB_PASSWORD:password}
+  host: localhost
+  port: 5432
+  name: ecommerce_db
+  user: admin
+  password: admin123
 
 schemas:
   staging: staging
@@ -49,3 +49,10 @@ bi_tool:
   tool: tableau     # tableau or powerbi
   host: localhost
   port: 5432
+
+scheduler:
+  run_time: "21:30"     # daily run time (24-hour format, local time)
+  timezone: "local"
+
+cleanup:
+  retention_days: 7

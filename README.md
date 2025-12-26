@@ -6,26 +6,86 @@
 
 ---
 
+# E-Commerce Data Pipeline & Analytics Platform
+
 ## Project Overview
-This project implements an end-to-end ETL (Extract, Transform, Load) pipeline for an e-commerce analytics platform. It ingests raw data, processes and transforms it, stores it in a PostgreSQL data warehouse, and supports analytical dashboards.
+This project implements an end-to-end **E-Commerce Data Analytics Pipeline** that generates synthetic data, ingests it into PostgreSQL, transforms it into analytical models, and produces business-ready analytics for visualization in BI tools.
+
+The pipeline follows a **Raw → Staging → Production → Warehouse → Analytics** architecture and supports automation, monitoring, testing, and documentation.
 
 ---
 
-## Prerequisites
+## Project Architecture
 
-Ensure the following software is installed on your system:
+**Data Flow:**
 
-- Python 3.8+
-- PostgreSQL 12+
-- Docker & Docker Compose
-- Git
-- Tableau Public OR Power BI Desktop (Free version)
+Raw CSV Data  
+→ Staging Schema  
+→ Production Schema  
+→ Warehouse (Star Schema)  
+→ Analytics (CSV Outputs)  
+→ BI Dashboard
 
 ---
 
-## Installation Steps
+## Technology Stack
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/Medapatisanjana12/ecommerce-data-pipeline-23A91A61G9.git
-cd ecommerce-data-pipeline-23A91A61G9
+- **Data Generation:** Python, Faker  
+- **Database:** PostgreSQL  
+- **ETL & Transformations:** Python, Pandas, SQLAlchemy  
+- **Orchestration:** Python Scheduler  
+- **Monitoring & Alerting:** Python + SQL  
+- **Analytics:** SQL, Pandas  
+- **Visualization:** Power BI / Tableau  
+- **Testing:** Pytest  
+- **Version Control:** Git  
+
+---
+
+## Project Structure
+
+```text
+ecommerce-data-pipeline/
+│
+├── config/
+│   └── config.yaml
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   │   ├── analytics/
+│   │   ├── monitoring_report.json
+│   │   └── pipeline_execution_report.json
+│
+├── scripts/
+│   ├── data_generation/
+│   ├── ingestion/
+│   ├── transformation/
+│   ├── monitoring/
+│   ├── scheduler.py
+│   ├── clean_old_data.py
+│   └── pipeline_orchestrator.py
+│
+├── sql/
+│   └── queries/
+│
+├── tests/
+│   ├── test_data_generation.py
+│   ├── test_ingestion.py
+│   ├── test_transformation.py
+│   ├── test_warehouse.py
+│
+├── docs/
+│   └── architecture.md
+│
+├── pytest.ini
+└── README.md
+
+---
+
+## Set up Instructions
+### 1.Create Virtual Environment
+```
+python -m venv venv
+source venv/Scripts/activate   # Windows Git Bash
+

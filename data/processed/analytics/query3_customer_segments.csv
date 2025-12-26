@@ -1,0 +1,5 @@
+segment,customer_count,total_revenue,avg_transaction_value
+$0-$1k,0,0.0,
+$1k-$5k,5,12615.29,2523.058
+$5k-$10k,6,44720.76,7453.46
+$10k+,981,195976619.16,199772.29272171253

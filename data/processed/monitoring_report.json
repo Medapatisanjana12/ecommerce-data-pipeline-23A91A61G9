@@ -1,0 +1,22 @@
+{
+  "monitoring_timestamp": "2025-12-26T14:37:27.291386+00:00",
+  "pipeline_health": "critical",
+  "alerts": [
+    {
+      "severity": "critical",
+      "message": "Zero transactions today"
+    }
+  ],
+  "data_freshness": {
+    "staging": "2024-12-30",
+    "production": null
+  },
+  "data_volume": {
+    "today_count": 0,
+    "status": "critical"
+  },
+  "data_quality": {
+    "null_customer_ids": 0,
+    "invalid_amounts": 0
+  }
+}

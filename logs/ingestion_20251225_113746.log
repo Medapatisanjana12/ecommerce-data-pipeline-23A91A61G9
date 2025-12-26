@@ -1,0 +1,9 @@
+2025-12-25 11:37:46,609 - INFO - Starting ingestion transaction
+2025-12-25 11:37:46,609 - INFO - Loading staging.customers from data/raw/customers.csv
+2025-12-25 11:37:46,627 - ERROR - missing data for column "loaded_at"
+CONTEXT:  COPY customers, line 1: "CUST0001,Joel,Miller,user1@example.com,001-434-796-7170,2025-10-04,Lake Jeremiah,Wisconsin,Estonia,2..."
+
+2025-12-25 11:37:46,628 - ERROR - Transaction rolled back
+2025-12-25 11:37:46,628 - ERROR - missing data for column "loaded_at"
+CONTEXT:  COPY customers, line 1: "CUST0001,Joel,Miller,user1@example.com,001-434-796-7170,2025-10-04,Lake Jeremiah,Wisconsin,Estonia,2..."
+

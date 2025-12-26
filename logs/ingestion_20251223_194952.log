@@ -1,0 +1,2 @@
+2025-12-23 19:49:52,443 - ERROR - invalid integer value "${DB_PORT:5432}" for connection option "port"
+

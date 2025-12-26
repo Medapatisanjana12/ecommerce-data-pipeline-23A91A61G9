@@ -1,0 +1,31 @@
+{
+  "transformation_timestamp": "2025-12-23T15:07:20.010723",
+  "records_processed": {
+    "customers": {
+      "input": 0,
+      "output": 0,
+      "filtered": 0
+    },
+    "products": {
+      "input": 0,
+      "output": 0,
+      "filtered": 0
+    },
+    "transactions": {
+      "inserted": 0
+    },
+    "transaction_items": {
+      "inserted": 0
+    }
+  },
+  "transformations_applied": [
+    "customer_text_normalization",
+    "product_enrichment",
+    "transaction_filtering",
+    "line_total_recalculation"
+  ],
+  "data_quality_post_transform": {
+    "null_violations": 0,
+    "constraint_violations": 0
+  }
+}
