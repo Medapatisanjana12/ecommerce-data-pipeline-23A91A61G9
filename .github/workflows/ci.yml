@@ -56,11 +56,25 @@ jobs:
         run: python scripts/data_generation/generate_data.py
 
       - name: Load staging data
-        run: python scripts/ingestion/load_to_staging.py
-
+        env:
+    DB_HOST: localhost
+    DB_PORT: 5432
+    DB_NAME: ecommerce_db_test
+    DB_USER: test_user
+    DB_PASSWORD: test_password
+  run: |
+    python scripts/ingestion/load_to_staging.py
+  
       - name: Run transformations
-        run: python scripts/transformation/staging_to_production.py
-
+  env:
+    DB_HOST: localhost
+    DB_PORT: 5432
+    DB_NAME: ecommerce_db_test
+    DB_USER: test_user
+    DB_PASSWORD: test_password
+  run: |
+    python scripts/transformation/staging_to_production.py
+  
       - name: Run tests with coverage
         run: |
           pytest tests --cov=scripts --cov-report=term-missing
