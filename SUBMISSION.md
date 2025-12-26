@@ -3,13 +3,35 @@
 ## Student Information
 - Name: Sanjana Medapati
 - Roll Number: 23A91A61G9
-- Email: <your-email>
+- Email: 23a91a61g9@aec.edu.in
 - Submission Date: 26-12-2025
 
 ## GitHub Repository
 - URL: https://github.com/Medapatisanjana12/ecommerce-data-pipeline-23A91A61G9
 - Visibility: Public
+- Branch: main
 
+## Project Overview
+This project implements a complete end-to-end E-Commerce Data Pipeline covering:
+- Synthetic data generation
+- ETL (Extract, Transform, Load)
+- Data warehousing (star schema)
+- Analytical reporting
+- Automation, testing, CI/CD, and Docker deployment
+- The pipeline follows industry best practices including modular design, idempotent execution, monitoring, and automated validation.
+
+## Technology Stack
+- Programming: Python 3
+- Data Generation: Faker
+- Database: PostgreSQL
+- ETL & Transformations: Pandas, SQLAlchemy, psycopg2
+- Orchestration & Scheduling: Python Scheduler
+- Monitoring & Alerting: Custom monitoring scripts
+- Testing: Pytest + Coverage
+- CI/CD: GitHub Actions
+- Containerization: Docker & Docker Compose
+- BI Tool: Power BI
+  
 ## Project Completion Status
 
 ### Phase 1: Setup
@@ -48,8 +70,14 @@
 ## Dashboard Links
 - Power BI Screenshots: dashboards/screenshots/
 
+## Challenges Faced & Solutions
+- Database connectivity issues: Resolved using environment-based configuration
+- Unicode and encoding errors: Fixed by removing unsupported characters
+- CI failures due to missing schemas: Solved by automated schema creation
+- Container conflicts: Resolved via proper container cleanup and naming
+
 ## Declaration
-I hereby declare this project is my original work.
+I hereby declare that this project is my original work and has been completed independently as per the given guidelines
 
 **Signature:** Sanjana Medapati  
 **Date:** 26-12-2025
