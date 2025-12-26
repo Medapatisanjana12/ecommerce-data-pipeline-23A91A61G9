@@ -1,77 +1,55 @@
 import os
-import yaml
+import psycopg2
 import pandas as pd
-from sqlalchemy import create_engine, text
-from datetime import datetime
 
-# --------------------------------------------------
-# Load config
-# --------------------------------------------------
-with open("config/config.yaml", "r") as f:
-    cfg = yaml.safe_load(f)
-
-db = cfg["database"]
-
-# --------------------------------------------------
-# Database connection
-# --------------------------------------------------
-engine = create_engine(
-    f"postgresql+psycopg2://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['name']}",
-    echo=False
-)
-
-# --------------------------------------------------
-# Paths
-# --------------------------------------------------
 RAW_DIR = "data/raw"
 
-TABLE_FILE_MAP = {
-    "customers": "customers.csv",
-    "products": "products.csv",
-    "transactions": "transactions.csv",
-    "transaction_items": "transaction_items.csv",
+DB_CONFIG = {
+    "host": os.getenv("DB_HOST", "localhost"),
+    "port": os.getenv("DB_PORT", "5432"),
+    "database": os.getenv("DB_NAME", "ecommerce_db"),
+    "user": os.getenv("DB_USER", "admin"),
+    "password": os.getenv("DB_PASSWORD", "admin"),
 }
 
-# --------------------------------------------------
-# Load function
-# --------------------------------------------------
-def load_csv_to_staging(table_name, file_name):
-    file_path = os.path.join(RAW_DIR, file_name)
+TABLES = {
+    "customers.csv": "staging.customers",
+    "products.csv": "staging.products",
+    "transactions.csv": "staging.transactions",
+    "transaction_items.csv": "staging.transaction_items",
+}
 
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Missing file: {file_path}")
+def load_csv(cursor, conn, csv_file, table):
+    path = os.path.join(RAW_DIR, csv_file)
 
-    df = pd.read_csv(file_path)
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Missing file: {path}")
 
-    with engine.begin() as conn:
-        # Idempotency: TRUNCATE before load
-        conn.execute(text(f"TRUNCATE TABLE staging.{table_name}"))
+    df = pd.read_csv(path)
 
-        df.to_sql(
-            table_name,
-            conn,
-            schema="staging",
-            if_exists="append",
-            index=False,
-            method="multi"
-        )
+    cursor.execute(f"TRUNCATE TABLE {table}")
 
-    return len(df)
+    cols = ",".join(df.columns)
+    values = ",".join(["%s"] * len(df.columns))
 
+    insert_sql = f"INSERT INTO {table} ({cols}) VALUES ({values})"
 
-# --------------------------------------------------
-# Main execution
-# --------------------------------------------------
+    for row in df.itertuples(index=False):
+        cursor.execute(insert_sql, tuple(row))
+
+    conn.commit()
+
+def main():
+    conn = psycopg2.connect(**DB_CONFIG)
+    cur = conn.cursor()
+
+    for csv_file, table in TABLES.items():
+        print(f"Loading {csv_file} → {table}")
+        load_csv(cur, conn, csv_file, table)
+
+    cur.close()
+    conn.close()
+    print("Staging load completed successfully")
+
 if __name__ == "__main__":
-    start = datetime.now()
-    print("Starting Data Ingestion → Staging")
-
-    total_rows = 0
-
-    for table, file in TABLE_FILE_MAP.items():
-        rows = load_csv_to_staging(table, file)
-        total_rows += rows
-        print(f"Loaded {rows} rows into staging.{table}")
-
-    print(f"Data ingestion completed. Total rows loaded: {total_rows}")
-    print(f"Duration: {(datetime.now() - start).total_seconds():.2f}s")
+    main()
