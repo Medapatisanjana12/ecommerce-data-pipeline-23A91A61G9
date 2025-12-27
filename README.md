@@ -1,7 +1,5 @@
 # E-Commerce Data Pipeline Project
 
-![CI](https://github.com/Medapatisanjana12/ecommerce-data-pipeline-23A91A61G9/actions/workflows/ci.yml/badge.svg)
-
 **Student Name:** Sanjana Medapati  
 **Roll Number:** 23A91A61G9  
 **Submission Date:** 27-12-2025  
